@@ -37,25 +37,26 @@ const Chat: FC = () => {
   }, [messages])
 
   return (
-    <div className='w-full h-full flex-1 flex flex-col justify-between items-center p-6'>
+    <div className='w-full h-full flex-1 flex flex-col justify-between items-center py-6 px-4 md:px-6'>
       {/*Height of max height = screen height - header - main's padding - input height*/}
       <div
         id='chat-response'
         ref={chatWrapperRef}
-        className='text-xl overflow-y-auto w-3/4 h-[75vh] max-h-[calc(100vh-90px-48px-50px)] flex flex-col gap-7'
+        className='text-base md:text-xl overflow-y-auto w-full md:w-3/4 h-[80vh] max-h-[calc(100vh-45px-48px-45px)]  md:max-h-[calc(100vh-90px-48px-50px)] flex flex-col gap-5 md:gap-7'
       >
         {messages.map((m) => (
           <div
             key={m.id}
-            className={`flex gap-4 ${m.role === 'user' ? 'flex-row-reverse' : ''}`}
+            className={`flex gap-3 md:gap-4 ${m.role === 'user' ? 'flex-row-reverse' : ''}`}
           >
-            <div className='basis-[5%] min-w-[5%]'>
-              <div className='h-[50px] w-[50px] max-w-[50px] relative bg-white rounded-full overflow-hidden'>
+            <div className='basis-[10%] min-w-[10%] md:basis-[5%] md:min-w-[5%] flex justify-end'>
+              <div className='h-8 w-8 max-w-8 md:h-[50px] md:w-[50px] md:max-w-[50px] relative bg-white rounded-full overflow-hidden'>
                 <Image
                   src={getAvatar(m.role === 'user' ? 'user' : 'bot')}
                   alt='User'
                   fill
                   sizes='10vw'
+                  priority
                   style={{ objectFit: 'contain' }}
                 />
               </div>
@@ -66,7 +67,7 @@ const Chat: FC = () => {
           </div>
         ))}
       </div>
-      <div id='input-wrapper' className='w-1/2'>
+      <div id='input-wrapper' className='w-full md:w-1/2'>
         <form onSubmit={handleSubmit} className='w-full relative'>
           <input
             value={input}
@@ -74,12 +75,12 @@ const Chat: FC = () => {
             placeholder={
               isLoading ? 'AI is typing...' : 'Type some word here...'
             }
-            className='w-full text-xl px-5 py-2 rounded-[12px]'
+            className='w-full text-base md:text-xl px-5 py-2 rounded-[12px]'
           />
           <button
             disabled={isLoading}
             type='submit'
-            className={`transition duration-300 absolute -translate-x-[calc(100%+10px)] top-1/2 -translate-y-1/2 
+            className={`transition duration-300 absolute -translate-x-[calc(100%+14px)] top-1/2 -translate-y-1/2 
              px-2 py-1 rounded-full text-[18px] leading-none text-center 
              ${isLoading ? 'bg-gray-500 select-none cursor-not-allowed' : 'bg-amber-300 hover:bg-amber-500'}`}
           >
