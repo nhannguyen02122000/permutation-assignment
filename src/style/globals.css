@@ -18,13 +18,17 @@
 
 html,
 body {
-  @apply p-0 m-0 text-base font-normal text-black;
+  @apply p-0 m-0 text-base font-normal text-white;
   text-size-adjust: none;
 }
 
 a {
   @apply text-inherit;
   text-decoration: none;
+}
+
+input {
+  @apply text-[#333333] focus-visible:outline-none;
 }
 
 * {
@@ -48,4 +52,28 @@ a {
   button:focus {
     outline: 0;
   }
+}
+
+@font-face {
+  font-family: 'Brandon';
+  src: url('/fonts/Brandon_reg.otf') format('otf'),
+  url('/fonts/Brandon_reg.otf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brandon';
+  src: url('/fonts/Brandon_med.otf') format('otf'),
+  url('/fonts/Brandon_med.otf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brandon';
+  src: url('/fonts/Brandon_bld.otf') format('otf'),
+  url('/fonts/Brandon_bld.otf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
 }
