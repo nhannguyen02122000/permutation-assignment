@@ -10,7 +10,7 @@ const getAvatar = (type: 'user' | 'bot') => {
 }
 
 const Chat: FC = () => {
-  const { messages, input, handleInputChange, handleSubmit, isLoading, error } =
+  const { messages, input, handleInputChange, handleSubmit, isLoading } =
     useChat({
       api: '/api/openai',
       initialMessages: [
@@ -44,7 +44,7 @@ const Chat: FC = () => {
         ref={chatWrapperRef}
         className='text-xl overflow-y-auto w-3/4 h-[75vh] max-h-[calc(100vh-90px-48px-50px)] flex flex-col gap-7'
       >
-        {messages.map((m, idx) => (
+        {messages.map((m) => (
           <div
             key={m.id}
             className={`flex gap-4 ${m.role === 'user' ? 'flex-row-reverse' : ''}`}
