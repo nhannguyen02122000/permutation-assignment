@@ -4,12 +4,6 @@ import { useChat } from 'ai/react'
 import UserChat from '@/components/Chat/UserChat'
 import SystemChat from '@/components/Chat/SystemChat'
 
-const getAvatar = (type: 'user' | 'bot') => {
-  return type === 'user'
-    ? 'https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png'
-    : 'https://t3.ftcdn.net/jpg/03/22/38/32/360_F_322383277_xcXz1I9vOFtdk7plhsRQyjODj08iNSwB.jpg'
-}
-
 const Chat: FC = () => {
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
     useChat({
