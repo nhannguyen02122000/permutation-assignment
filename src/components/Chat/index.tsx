@@ -1,7 +1,8 @@
 'use client'
 import { FC, useEffect, useRef } from 'react'
 import { useChat } from 'ai/react'
-import Image from 'next/image'
+import UserChat from '@/components/Chat/UserChat'
+import SystemChat from '@/components/Chat/SystemChat'
 
 const getAvatar = (type: 'user' | 'bot') => {
   return type === 'user'
@@ -44,28 +45,13 @@ const Chat: FC = () => {
         ref={chatWrapperRef}
         className='text-base md:text-xl overflow-y-auto w-full md:w-3/4 h-[80vh] max-h-[calc(100vh-45px-48px-45px)]  md:max-h-[calc(100vh-90px-48px-50px)] flex flex-col gap-5 md:gap-7'
       >
-        {messages.map((m) => (
-          <div
-            key={m.id}
-            className={`flex gap-3 md:gap-4 ${m.role === 'user' ? 'flex-row-reverse' : ''}`}
-          >
-            <div className='basis-[10%] min-w-[10%] md:basis-[5%] md:min-w-[5%] flex justify-end'>
-              <div className='h-8 w-8 max-w-8 md:h-[50px] md:w-[50px] md:max-w-[50px] relative bg-white rounded-full overflow-hidden'>
-                <Image
-                  src={getAvatar(m.role === 'user' ? 'user' : 'bot')}
-                  alt='User'
-                  fill
-                  sizes='10vw'
-                  priority
-                  style={{ objectFit: 'contain' }}
-                />
-              </div>
-            </div>
-            <p className={`${m.role === 'user' ? 'text-right' : ''}`}>
-              {m.content}
-            </p>
-          </div>
-        ))}
+        {messages.map((m) =>
+          m.role === 'user' ? (
+            <UserChat content={m.content} key={m.id} />
+          ) : (
+            <SystemChat content={m.content} key={m.id} />
+          )
+        )}
       </div>
       <div id='input-wrapper' className='w-full md:w-1/2'>
         <form onSubmit={handleSubmit} className='w-full relative'>
